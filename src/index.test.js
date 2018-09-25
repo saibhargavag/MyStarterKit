@@ -14,7 +14,7 @@ describe("test2",function(){
     const index=files.readFileSync("./src/index.html","utf-8");
     jdom.env(index,function(err,window){
       const h2=window.document.getElementsByTagName('h2')[0];      
-      chai.expect(h2.innerHTML).to.equal(" Welcome to my Starter Kit");
+      chai.expect(h2.innerHTML).to.equal("Welcome to my Starter Kit");
       done();
       window.close();
     });
