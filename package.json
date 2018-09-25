@@ -11,10 +11,10 @@
   "lint":"esw webpack.config.* src BuildScripts --color",
   "lint:watch":"npm run lint -- --watch",
   
-  "babelprestart":"babel-node buildScripts/startMessage.js",
+  "babelprestart":"babel-node BuildScripts/startMessage.js",
   "babel-open:web" : "babel-node BuildScripts/srcServer.js",
   "babelStart":"npm-run-all --parallel babelprestart babel-open:web lint:watch",
-  "test":"mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\""
+  "test":"mocha --reporter progress BuildScripts/testSetup.js \"src/**/*.test.js\""
   },
   "author": "Sai Bhargava",
   "license": "MIT",
