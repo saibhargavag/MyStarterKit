@@ -6,15 +6,21 @@
   "prestart":"node buildScripts/startMessage.js", 
   "open:web" : "node BuildScripts/srcServer.js",  
   "localtunnel": "lt -p 3000 -s saitest123",
-  "start":"npm-run-all --parallel open:web lint:watch",
+  "start":"npm-run-all --parallel open:web lint:watch test:watch",
   "startshare" : "npm-run-all --parallel open:web localtunnel",
   "lint":"esw webpack.config.* src BuildScripts --color",
   "lint:watch":"npm run lint -- --watch",
   
   "babelprestart":"babel-node BuildScripts/startMessage.js",
   "babel-open:web" : "babel-node BuildScripts/srcServer.js",
-  "babelStart":"npm-run-all --parallel babelprestart babel-open:web lint:watch",
-  "test":"mocha --reporter progress BuildScripts/testSetup.js \"src/**/*.test.js\""
+  "babelStart":"npm-run-all --parallel babelprestart babel-open:web lint:watch test:watch",
+  "test":"mocha --reporter progress BuildScripts/testSetup.js \"src/**/*.test.js\"",
+  "test-watch":"npm run test -- --watch",
+
+  "clean-dist":"rimraf ./dist && mkdir dist",
+  "prebuild": "npm-run-all clean-dist lint test",
+  "build":"babel-node BuildScripts/build.js",
+  "postbuild":"babel-node BuildScripts/distServer.js"
   },
   "author": "Sai Bhargava",
   "license": "MIT",
